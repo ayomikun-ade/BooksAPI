@@ -26,7 +26,19 @@ const books = [
  *                      schema:
  *                          type: array
  *                          items:
- *                              $ref: '#/components/schemas/Book'
+ *                              type: object
+ *                              properties:
+ *                                  id:
+ *                                      type: integer
+ *                                  title:
+ *                                      type: string
+ *                                  author:
+ *                                      type: string
+ *                                  publishedDate:
+ *                                      type: string
+ *                                      format: date
+ *                                  summary:
+ *                                      type: string
  *
  */
 
@@ -54,7 +66,20 @@ router.get("/", (req, res) => {
  *              content:
  *                  application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/Book'
+ *                          type: object
+ *                          properties:
+ *                              id:
+ *                                  type: integer
+ *                              title:
+ *                                  type: string
+ *                              author:
+ *                                  type: string
+ *                              publishedDate:
+ *                                  type: string
+ *                                  format: date
+ *                              summary:
+ *                                  type: string
+
  *          404:
  *              description: Book not found
  *
@@ -78,14 +103,36 @@ router.get("/:id", (req, res) => {
  *          content:
  *              application/json:
  *                  schema:
- *                      $ref: '#/components/schemas/Book'
+ *                      type: object
+ *                      properties:
+ *                          title:
+ *                              type: string
+ *                          author:
+ *                              type: string
+ *                          publishedDate:
+ *                              type: string
+ *                              format: date
+ *                          summary:
+ *                              type: string
  *      responses:
  *          201:
  *              description: The newly created book
  *              content:
  *                  application/json:
  *                      schema:
- *                          $ref: '#/components/schemas/Book'
+ *                          type: object
+ *                          properties:
+ *                              id:
+ *                                  type: integer
+ *                              title:
+ *                                  type: string
+ *                              author:
+ *                                  type: string
+ *                              publishedDate:
+ *                                  type: string
+ *                                  format: date
+ *                              summary:
+ *                                  type: string
  */
 
 router.post("/", (req, res) => {
@@ -113,14 +160,36 @@ router.post("/", (req, res) => {
  *       content:
  *         application/json:
  *           schema:
- *             $ref: '#/components/schemas/Book'
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               author:
+ *                 type: string
+ *               publishedDate:
+ *                 type: string
+ *                 format: date
+ *               summary:
+ *                 type: string
  *     responses:
  *       200:
  *         description: The updated book
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Book'
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 title:
+ *                   type: string
+ *                 author:
+ *                   type: string
+ *                 publishedDate:
+ *                   type: string
+ *                   format: date
+ *                 summary:
+ *                   type: string
  *       404:
  *         description: Book not found
  */
@@ -157,7 +226,19 @@ router.put("/:id", (req, res) => {
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/Book'
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                 title:
+ *                   type: string
+ *                 author:
+ *                   type: string
+ *                 publishedDate:
+ *                   type: string
+ *                   format: date
+ *                 summary:
+ *                   type: string
  *       404:
  *         description: Book not found
  */
@@ -169,42 +250,5 @@ router.delete("/:id", (req, res) => {
   const deletedBook = books.splice(bookIndex, 1);
   res.json(deletedBook);
 });
-
-//swagger schemas
-/**
- * @swagger
- * components:
- *  schemas:
- *      Book:
- *          type: object
- *          required:
- *              - title
- *              - author
- *              - publishedDate
- *              - summary
- *          properties:
- *              id:
- *                  type: integer
- *                  description: The auto generated id of the book
- *              title:
- *                  type: string
- *                  description: The title of the book
- *              author:
- *                  type: string
- *                  description: The author of the book
- *              publishedDate:
- *                  type: string
- *                  format: date
- *                  description: The date the book was published.
- *              summary:
- *                  type: string
- *                  description: the summary of the book
- *          example:
- *              id: 1
- *              title: '1984'
- *              author: 'Ally Carter'
- *              publishedDate: '1990-05-06'
- *              summary: 'A look into the life in 1984'
- */
 
 module.exports = router;
